@@ -4,737 +4,673 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Code Academy | أكاديمية البرمجة</title>
+<meta name="theme-color" content="#080b18">
+<title>CODE MASTER | أكاديمية البرمجة</title>
 
 <style>
-* {
-  margin:0;
-  padding:0;
-  box-sizing:border-box;
-  font-family:Tahoma,Arial,sans-serif;
-}
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;600;700&display=swap');
 
-body {
-  min-height:100vh;
-  color:#fff;
-  background:#080e20;
-  overflow-x:hidden;
+:root{
+ --bg:#080b18;--panel:rgba(19,25,47,.76);
+ --line:rgba(255,255,255,.1);--text:#edf2ff;
+ --muted:#9ba8c6;--blue:#60a5fa;--purple:#a78bfa;
+ --green:#34d399;--orange:#fbbf24;
 }
-
-body::before,body::after {
-  content:"";
-  position:fixed;
-  width:350px;
-  height:350px;
-  border-radius:50%;
-  filter:blur(100px);
-  opacity:.35;
-  z-index:-1;
-  animation:float 10s infinite alternate;
+*{box-sizing:border-box}
+body{
+ margin:0;background:var(--bg);color:var(--text);
+ font-family:'Cairo',sans-serif;min-height:100vh;
+ overflow-x:hidden;
 }
-
-body::before {
-  background:#006eff;
-  top:-100px;
-  right:-100px;
+body:before,body:after{
+ content:"";position:fixed;width:420px;height:420px;
+ border-radius:50%;filter:blur(110px);opacity:.22;
+ z-index:-1;pointer-events:none;
 }
-
-body::after {
-  background:#9c27ff;
-  bottom:-100px;
-  left:-100px;
-  animation-delay:2s;
+body:before{background:#4f46e5;top:-160px;right:-100px}
+body:after{background:#0891b2;bottom:-170px;left:-100px}
+#particles{
+ position:fixed;inset:0;pointer-events:none;z-index:-1;
+ background-image:radial-gradient(#fff 1px,transparent 1px);
+ background-size:55px 55px;opacity:.09;
+ animation:move 35s linear infinite;
 }
-
-@keyframes float {
-  to {transform:translate(100px,100px) scale(1.3);}
+@keyframes move{to{background-position:300px 400px}}
+button,input{font:inherit}
+button{cursor:pointer}
+#intro{
+ position:fixed;inset:0;z-index:1000;
+ display:flex;align-items:center;justify-content:center;
+ flex-direction:column;background:#080b18;
+ transition:opacity .8s,visibility .8s;
 }
-
-header {
-  padding:22px;
-  text-align:center;
-  background:#ffffff0c;
-  border-bottom:1px solid #ffffff20;
-  backdrop-filter:blur(20px);
+#intro.hide{opacity:0;visibility:hidden}
+.logo{
+ width:90px;height:90px;border-radius:27px;
+ display:grid;place-items:center;font-size:35px;
+ background:linear-gradient(135deg,#6366f1,#06b6d4);
+ box-shadow:0 0 60px #6366f155;
 }
-
-header h1 {
-  font-size:27px;
-  color:#64d9ff;
+.intro-title{font-size:30px;font-weight:900;margin:20px 0 5px}
+.intro-sub{color:var(--muted);font-size:13px}
+.progress-wrap{width:min(320px,80vw);margin-top:30px}
+.progress-info{display:flex;justify-content:space-between;margin-bottom:10px}
+.progress-track{height:7px;border-radius:20px;background:#202945;overflow:hidden}
+.progress-fill{
+ height:100%;width:0%;border-radius:20px;
+ background:linear-gradient(90deg,#6366f1,#22d3ee);
+ transition:width .12s;
 }
-
-header p {
-  color:#b9c5d9;
-  margin-top:8px;
-  font-size:13px;
+#app{opacity:0;transform:translateY(18px);transition:1s}
+#app.ready{opacity:1;transform:none}
+header{
+ padding:18px 5%;display:flex;align-items:center;
+ justify-content:space-between;border-bottom:1px solid var(--line);
+ background:rgba(8,11,24,.65);backdrop-filter:blur(20px);
+ position:sticky;top:0;z-index:20;
 }
-
-.container {
-  max-width:1000px;
-  margin:auto;
-  padding:20px;
+.brand{display:flex;align-items:center;gap:12px}
+.brand-icon{
+ width:43px;height:43px;border-radius:14px;
+ display:grid;place-items:center;
+ background:linear-gradient(135deg,#6366f1,#0891b2);
+ font-weight:900;font-family:monospace;font-size:18px;
 }
-
-.hero {
-  text-align:center;
-  padding:30px 10px;
+.brand h1{font-size:17px;margin:0}
+.brand small{display:block;color:var(--muted);font-size:10px}
+.header-status{color:var(--green);font-size:12px}
+.container{width:min(1200px,92%);margin:35px auto 70px}
+.hero{
+ padding:35px 25px;border:1px solid var(--line);
+ border-radius:25px;background:linear-gradient(120deg,#171d3a99,#10172b99);
+ backdrop-filter:blur(18px);position:relative;overflow:hidden;
 }
-
-.hero h2 {
-  font-size:25px;
-  margin-bottom:12px;
+.hero:after{
+ content:"</>";position:absolute;left:35px;top:10px;
+ font:900 100px monospace;color:#ffffff09;
 }
-
-.hero p {
-  color:#b9c5d9;
-  line-height:2;
+.hero h2{font-size:clamp(24px,4vw,38px);margin:0 0 8px}
+.hero h2 span{color:#8b9cff}
+.hero p{color:var(--muted);max-width:650px;line-height:2;margin:0}
+.stats{
+ display:grid;grid-template-columns:repeat(3,1fr);
+ gap:13px;margin-top:25px;max-width:650px;
 }
-
-.stats {
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:12px;
-  margin:20px 0;
+.stat{
+ padding:13px;border:1px solid var(--line);
+ background:#ffffff07;border-radius:15px;
 }
-
-.stat {
-  background:#ffffff12;
-  border:1px solid #ffffff20;
-  backdrop-filter:blur(15px);
-  padding:17px 8px;
-  border-radius:18px;
-  text-align:center;
+.stat strong{font-size:22px;display:block}
+.stat small{color:var(--muted)}
+.tabs{
+ display:flex;gap:10px;flex-wrap:wrap;margin:25px 0;
 }
-
-.stat strong {
-  color:#64d9ff;
-  font-size:22px;
-  display:block;
+.tab{
+ border:1px solid var(--line);color:var(--muted);
+ background:#ffffff08;padding:12px 22px;border-radius:14px;
+ transition:.25s;
 }
-
-.stat span {
-  font-size:12px;
-  color:#c4cede;
+.tab:hover,.tab.active{
+ color:white;border-color:#818cf8;
+ background:linear-gradient(120deg,#6366f1aa,#0891b255);
+ box-shadow:0 8px 25px #6366f122;
+ transform:translateY(-2px);
 }
-
-.languages {
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:12px;
-  margin:20px 0;
+.toolbar{
+ display:flex;gap:12px;align-items:center;
+ margin-bottom:18px;flex-wrap:wrap;
 }
-
-.lang-btn,.action-btn {
-  border:1px solid #ffffff30;
-  background:#ffffff12;
-  color:white;
-  padding:17px 8px;
-  border-radius:17px;
-  cursor:pointer;
-  font-size:15px;
-  transition:.25s ease;
-  backdrop-filter:blur(15px);
+.searchbox{position:relative;flex:1;min-width:220px}
+.searchbox input{
+ width:100%;padding:14px 45px 14px 15px;
+ border-radius:14px;border:1px solid var(--line);
+ outline:none;background:#ffffff09;color:white;
 }
-
-.lang-btn:active,.action-btn:active {
-  transform:translateY(-4px) scale(1.03);
-  box-shadow:0 0 25px #36bfff88;
+.searchbox input:focus{border-color:#818cf8}
+.searchbox span{position:absolute;right:15px;top:11px}
+.counter{color:var(--muted);font-size:12px}
+.cards{
+ display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));
+ gap:14px;
 }
-
-.lang-btn.active {
-  background:linear-gradient(135deg,#087cff,#8b43ff);
-  box-shadow:0 0 20px #268dff66;
+.item{
+ border:1px solid var(--line);border-radius:17px;
+ padding:17px;background:var(--panel);
+ backdrop-filter:blur(14px);cursor:pointer;
+ transition:transform .25s,border-color .25s,background .25s;
+ animation:appear .35s both;
 }
-
-.panel {
-  background:#ffffff10;
-  border:1px solid #ffffff25;
-  border-radius:22px;
-  padding:20px;
-  margin:18px 0;
-  backdrop-filter:blur(22px);
-  box-shadow:0 15px 40px #0004;
+@keyframes appear{
+ from{opacity:0;transform:translateY(12px)}
+ to{opacity:1;transform:translateY(0)}
 }
-
-.panel h2 {
-  color:#64d9ff;
-  margin-bottom:13px;
+.item:hover{
+ transform:translateY(-5px);
+ border-color:#818cf8;background:#222b4c;
 }
-
-.description {
-  color:#c3cee0;
-  line-height:2;
-  font-size:14px;
+.item-top{display:flex;justify-content:space-between;align-items:center}
+.item h3{font-size:16px;margin:12px 0 6px}
+.item p{font-size:12px;color:var(--muted);line-height:1.9;margin:0}
+.code{
+ direction:ltr;text-align:left;font-family:'JetBrains Mono',monospace;
+ color:#93c5fd;background:#080d1c;border-radius:9px;
+ padding:10px;margin-top:12px;font-size:12px;
+ overflow:auto;white-space:pre-wrap;
 }
-
-.search {
-  width:100%;
-  padding:15px;
-  margin:15px 0;
-  background:#080f22;
-  border:1px solid #ffffff25;
-  border-radius:14px;
-  color:white;
-  outline:none;
-  font-size:15px;
+.tag{
+ color:#c4b5fd;font-size:10px;padding:4px 9px;
+ border-radius:20px;background:#8b5cf622;
 }
-
-.search:focus {
-  border-color:#55c9ff;
-  box-shadow:0 0 15px #168dff55;
+.modal{
+ position:fixed;inset:0;z-index:100;display:none;
+ align-items:center;justify-content:center;padding:18px;
+ background:#02040bd9;backdrop-filter:blur(12px);
 }
-
-.symbol-list {
-  display:grid;
-  grid-template-columns:repeat(auto-fill,minmax(125px,1fr));
-  gap:10px;
-  margin-top:15px;
+.modal.show{display:flex;animation:fade .25s}
+@keyframes fade{from{opacity:0}to{opacity:1}}
+.modal-content{
+ width:min(650px,100%);max-height:85vh;overflow:auto;
+ background:#111a32;border:1px solid var(--line);
+ border-radius:23px;padding:24px;
+ animation:rise .3s;
 }
-
-.symbol {
-  background:#ffffff0c;
-  border:1px solid #ffffff20;
-  border-radius:13px;
-  padding:13px;
-  cursor:pointer;
-  text-align:center;
-  transition:.25s;
+@keyframes rise{from{transform:translateY(20px)}to{transform:none}}
+.modal-head{display:flex;justify-content:space-between;gap:15px}
+.close{
+ border:0;background:#ffffff12;color:white;
+ width:35px;height:35px;border-radius:10px;font-size:20px;
 }
-
-.symbol:active,.symbol.selected {
-  transform:translateY(-3px);
-  background:#1478d955;
-  box-shadow:0 0 15px #239fff55;
+.modal-content p{color:#c2cce1;line-height:2}
+.modal-content h3{margin-top:22px}
+.example{
+ direction:ltr;text-align:left;white-space:pre-wrap;
+ background:#080d1c;padding:15px;border-radius:12px;
+ color:#a5f3fc;font:12px/1.8 'JetBrains Mono',monospace;
 }
-
-.symbol code {
-  display:block;
-  color:#71dbff;
-  font-size:17px;
-  direction:ltr;
-  margin-bottom:8px;
+.copy{
+ margin-top:13px;padding:10px 17px;border:0;
+ border-radius:10px;background:#6366f1;color:white;
 }
-
-.symbol small {
-  color:#c5cede;
-  font-size:11px;
-}
-
-.detail {
-  margin-top:20px;
-  padding:18px;
-  background:#071327;
-  border:1px solid #1d91e8;
-  border-radius:16px;
-  display:none;
-  line-height:2;
-}
-
-.detail code {
-  color:#71dbff;
-  direction:ltr;
-}
-
-.example {
-  background:#030915;
-  padding:15px;
-  margin-top:12px;
-  border-radius:12px;
-  overflow-x:auto;
-  direction:ltr;
-  text-align:left;
-  color:#8be9ff;
-  white-space:pre-wrap;
-}
-
-.actions {
-  display:flex;
-  gap:10px;
-  flex-wrap:wrap;
-  margin-top:15px;
-}
-
-.action-btn {
-  padding:12px 20px;
-  font-size:13px;
-}
-
-.progress {
-  height:8px;
-  background:#ffffff20;
-  border-radius:20px;
-  overflow:hidden;
-  margin-top:12px;
-}
-
-.progress div {
-  width:0%;
-  height:100%;
-  background:linear-gradient(90deg,#00c6ff,#a34dff);
-  transition:.4s;
-}
-
-footer {
-  text-align:center;
-  padding:25px;
-  color:#8f9db5;
-  font-size:12px;
-}
-
-@media(max-width:550px) {
-  .languages {gap:7px;}
-  .lang-btn {font-size:12px;padding:14px 3px;}
-  .hero h2 {font-size:21px;}
+.empty{text-align:center;color:var(--muted);padding:45px}
+footer{text-align:center;color:var(--muted);font-size:11px;padding:25px}
+@media(max-width:600px){
+ header{padding:13px 4%}
+ .brand h1{font-size:14px}
+ .container{margin-top:20px}
+ .hero{padding:25px 17px}
+ .stats{gap:7px}
+ .stat{padding:10px}
+ .stat strong{font-size:18px}
 }
 </style>
 </head>
 
 <body>
+<div id="particles"></div>
 
+<section id="intro">
+ <div class="logo">&lt;/&gt;</div>
+ <div class="intro-title">CODE MASTER</div>
+ <div class="intro-sub">أكاديمية البرمجة التفاعلية</div>
+ <div class="progress-wrap">
+  <div class="progress-info">
+   <small>جاري تجهيز الأكاديمية...</small>
+   <strong id="percent">0%</strong>
+  </div>
+  <div class="progress-track">
+   <div class="progress-fill" id="progress"></div>
+  </div>
+ </div>
+</section>
+
+<div id="app">
 <header>
-<h1>🚀 CODE ACADEMY</h1>
-<p>أكاديمية تعلم البرمجة من الصفر إلى الاحتراف</p>
+ <div class="brand">
+  <div class="brand-icon">&lt;/&gt;</div>
+  <div>
+   <h1>CODE MASTER</h1>
+   <small>أكاديمية تعلم البرمجة</small>
+  </div>
+ </div>
+ <div class="header-status">● النظام جاهز</div>
 </header>
 
 <main class="container">
+ <section class="hero">
+  <h2>اكتشف عالم <span>البرمجة</span></h2>
+  <p>
+   تعلم HTML وCSS وJavaScript من خلال مرجع تفاعلي.
+   ابحث عن العناصر والخصائص والأوامر، وافتح أي بطاقة
+   للحصول على شرح ومثال عملي.
+  </p>
+  <div class="stats">
+   <div class="stat"><strong>HTML</strong><small>بناء صفحات الويب</small></div>
+   <div class="stat"><strong>CSS</strong><small>التصميم والتنسيق</small></div>
+   <div class="stat"><strong>JS</strong><small>التفاعل والبرمجة</small></div>
+  </div>
+ </section>
 
-<section class="hero">
-<h2>تعلم البرمجة بطريقة تفاعلية</h2>
-<p>
-اكتشف HTML وCSS وJavaScript، وتعلم وظيفة كل أمر
-وكيف تستخدمه في إنشاء مواقع وتطبيقات احترافية.
-</p>
-</section>
+ <nav class="tabs">
+  <button class="tab active" data-lang="html">HTML</button>
+  <button class="tab" data-lang="css">CSS</button>
+  <button class="tab" data-lang="js">JavaScript</button>
+ </nav>
 
-<div class="stats">
-<div class="stat">
-<strong>03</strong>
-<span>لغات برمجية</span>
-</div>
-<div class="stat">
-<strong>3000</strong>
-<span>خانة تعليمية مستهدفة</span>
-</div>
-<div class="stat">
-<strong>100%</strong>
-<span>تعلم تفاعلي</span>
-</div>
-</div>
+ <div class="toolbar">
+  <div class="searchbox">
+   <span>⌕</span>
+   <input id="search" placeholder="ابحث عن أمر أو عنصر أو وظيفة...">
+  </div>
+  <div class="counter" id="counter">0 عنصر</div>
+ </div>
 
-<h3>اختر لغة البرمجة</h3>
-
-<div class="languages">
-<button class="lang-btn active" onclick="changeLang('html',this)">HTML</button>
-<button class="lang-btn" onclick="changeLang('css',this)">CSS</button>
-<button class="lang-btn" onclick="changeLang('js',this)">JavaScript</button>
-</div>
-
-<section class="panel">
-<h2 id="langTitle">HTML - لغة بناء صفحات الويب</h2>
-<p class="description" id="langDesc">
-HTML هي لغة تستخدم لبناء هيكل صفحات المواقع، مثل العناوين والنصوص والصور والروابط.
-</p>
-
-<input class="search" id="search" placeholder="🔍 ابحث عن رمز أو أمر..." oninput="render()">
-
-<div class="progress">
-<div id="progressBar"></div>
-</div>
-<p class="description" id="count" style="margin-top:8px"></p>
-
-<div class="symbol-list" id="symbols"></div>
-
-<div class="detail" id="detail">
-<h3 id="detailTitle"></h3>
-<p id="detailDesc"></p>
-<div class="example" id="detailExample"></div>
-<div class="actions">
-<button class="action-btn" onclick="copyExample()">نسخ المثال 📋</button>
-</div>
-</div>
-</section>
-
-<section class="panel">
-<h2>🧪 مختبر الأكواد</h2>
-<p class="description">اكتب كود HTML وشاهد النتيجة مباشرة.</p>
-
-<textarea id="editor" class="search" rows="7" style="direction:ltr;text-align:left" placeholder="<h1>Hello World</h1>"></textarea>
-
-<div class="actions">
-<button class="action-btn" onclick="runCode()">▶ تشغيل الكود</button>
-<button class="action-btn" onclick="clearCode()">مسح</button>
-</div>
-
-<iframe id="preview" title="معاينة الكود" sandbox="allow-scripts" style="width:100%;height:230px;background:white;border-radius:14px;margin-top:15px;border:0"></iframe>
-</section>
-
-<section class="panel">
-<h2>📚 كيف تعمل اللغات الثلاث؟</h2>
-<p class="description">
-<strong>HTML:</strong> تحدد محتويات الصفحة وهيكلها.<br><br>
-<strong>CSS:</strong> تتحكم في المظهر والألوان والأحجام والحركات.<br><br>
-<strong>JavaScript:</strong> تضيف التفاعل والوظائف والمنطق إلى الموقع.
-</p>
-</section>
-
+ <section class="cards" id="cards"></section>
+ <div id="empty" class="empty" hidden>لا توجد نتائج مطابقة لبحثك.</div>
 </main>
+<footer>CODE MASTER © 2026 — تعلم، جرّب، واصنع مشاريعك</footer>
+</div>
 
-<footer>
-CODE ACADEMY © 2026
-<br>تعلم اليوم واصنع مستقبلك غداً.
-</footer>
+<div class="modal" id="modal">
+ <div class="modal-content">
+  <div class="modal-head">
+   <div>
+    <span class="tag" id="detail-category"></span>
+    <h2 id="detail-title"></h2>
+   </div>
+   <button class="close" id="close">×</button>
+  </div>
+  <p id="detail-description"></p>
+  <h3>طريقة الاستخدام</h3>
+  <div class="example" id="detail-example"></div>
+  <button class="copy" id="copy">نسخ الكود</button>
+ </div>
+</div>
 
 <script>
+/* ==================================================
+   قاعدة البيانات الأساسية
+================================================== */
+
 const database = {
-
-html: {
-title:"HTML - لغة بناء صفحات الويب",
-desc:"تستخدم HTML لإنشاء هيكل الصفحة وإضافة النصوص والصور والروابط والنماذج.",
-items:[
-["<html>","جذر مستند HTML","<html lang='ar'>"],
-["<head>","يحتوي معلومات الصفحة","<head><title>موقعي</title></head>"],
-["<title>","عنوان الصفحة في المتصفح","<title>أكاديميتي</title>"],
-["<body>","محتوى الصفحة المرئي","<body>مرحبا</body>"],
-["<h1>","عنوان رئيسي","<h1>مرحبا</h1>"],
-["<h2>","عنوان من المستوى الثاني","<h2>عنوان</h2>"],
-["<h3>","عنوان من المستوى الثالث","<h3>عنوان</h3>"],
-["<p>","إنشاء فقرة نصية","<p>نص تجريبي</p>"],
-["<br>","الانتقال إلى سطر جديد","سطر أول<br>سطر ثان"],
-["<hr>","إضافة خط فاصل","<hr>"],
-["<a>","إنشاء رابط","<a href='https://example.com'>زيارة</a>"],
-["<img>","عرض صورة","<img src='photo.jpg' alt='صورة'>"],
-["<div>","حاوية لتجميع العناصر","<div>محتوى</div>"],
-["<span>","حاوية نصية داخل السطر","<span>نص</span>"],
-["<ul>","قائمة غير مرتبة","<ul><li>عنصر</li></ul>"],
-["<ol>","قائمة مرتبة","<ol><li>عنصر</li></ol>"],
-["<li>","عنصر داخل قائمة","<li>HTML</li>"],
-["<button>","إنشاء زر","<button>اضغط</button>"],
-["<input>","حقل إدخال","<input type='text'>"],
-["<textarea>","حقل نص متعدد الأسطر","<textarea></textarea>"],
-["<form>","إنشاء نموذج","<form>...</form>"],
-["<label>","عنوان لحقل إدخال","<label>الاسم</label>"],
-["<select>","قائمة اختيار","<select><option>واحد</option></select>"],
-["<option>","خيار في قائمة","<option>العراق</option>"],
-["<table>","إنشاء جدول","<table></table>"],
-["<tr>","صف في جدول","<tr></tr>"],
-["<td>","خلية بيانات","<td>بيانات</td>"],
-["<th>","خلية عنوان","<th>الاسم</th>"],
-["<thead>","رأس الجدول","<thead></thead>"],
-["<tbody>","جسم الجدول","<tbody></tbody>"],
-["<footer>","تذييل الصفحة","<footer>النهاية</footer>"],
-["<header>","رأس الصفحة","<header>الشعار</header>"],
-["<nav>","قسم التنقل","<nav>روابط</nav>"],
-["<main>","المحتوى الرئيسي","<main>المحتوى</main>"],
-["<section>","قسم من الصفحة","<section>قسم</section>"],
-["<article>","محتوى مستقل","<article>مقال</article>"],
-["<aside>","محتوى جانبي","<aside>جانبي</aside>"],
-["<video>","إضافة فيديو","<video controls></video>"],
-["<audio>","إضافة صوت","<audio controls></audio>"],
-["<source>","مصدر وسائط","<source src='video.mp4'>"],
-["<canvas>","مساحة للرسم","<canvas></canvas>"],
-["<iframe>","تضمين صفحة أخرى","<iframe src='page.html'></iframe>"],
-["<strong>","إبراز أهمية النص","<strong>مهم</strong>"],
-["<em>","التأكيد على النص","<em>نص</em>"],
-["<small>","نص صغير","<small>ملاحظة</small>"],
-["<code>","عرض كود برمجي","<code>console.log()</code>"],
-["<pre>","نص محافظ على تنسيقه","<pre>نص</pre>"],
-["<blockquote>","اقتباس طويل","<blockquote>اقتباس</blockquote>"],
-["<details>","محتوى قابل للفتح","<details><summary>المزيد</summary>شرح</details>"],
-["<summary>","عنوان تفاصيل","<summary>افتح</summary>"],
-["<meta>","بيانات وصفية","<meta charset='UTF-8'>"],
-["<link>","ربط ملف خارجي","<link rel='stylesheet' href='style.css'>"],
-["<style>","كتابة CSS داخل الصفحة","<style>body{color:red}</style>"],
-["<script>","إضافة JavaScript","<script>console.log('Hi')<\/script>"],
-["<!-- -->","تعليق داخل HTML","<!-- تعليق -->"],
-["<!DOCTYPE html>","تعريف نوع المستند","<!DOCTYPE html>"],
-["id","معرّف فريد للعنصر","<div id='box'></div>"],
-["class","تحديد صنف للعنصر","<div class='box'></div>"],
-["href","عنوان الرابط","<a href='page.html'>رابط</a>"],
-["src","مصدر الصورة أو الملف","<img src='a.jpg'>"],
-["alt","وصف بديل للصورة","<img src='a.jpg' alt='صورة'>"],
-["style","تنسيق مباشر للعنصر","<p style='color:red'>نص</p>"],
-["type","تحديد نوع الحقل","<input type='email'>"],
-["value","قيمة افتراضية","<input value='أحمد'>"],
-["placeholder","نص إرشادي","<input placeholder='اسمك'>"],
-["disabled","تعطيل العنصر","<button disabled>زر</button>"],
-["required","جعل الحقل مطلوباً","<input required>"],
-["checked","تحديد مربع افتراضياً","<input type='checkbox' checked>"],
-["target","تحديد مكان فتح الرابط","<a target='_blank'>رابط</a>"],
-["lang","تحديد لغة المستند","<html lang='ar'>"],
-["dir","تحديد اتجاه النص","<html dir='rtl'>"],
-["data-*","تخزين بيانات مخصصة","<div data-id='10'></div>"],
-["aria-label","تسمية يسهل الوصول إليها","<button aria-label='إغلاق'>X</button>"]
-]
-},
-
-css:{
-title:"CSS - لغة تنسيق وتصميم المواقع",
-desc:"CSS تتحكم في الألوان والخطوط والأبعاد والتموضع والحركات والتصميم المتجاوب.",
-items:[
-["color","لون النص","color:red;"],
-["background","الخلفية","background:blue;"],
-["background-color","لون الخلفية","background-color:#111;"],
-["width","العرض","width:100%;"],
-["height","الارتفاع","height:200px;"],
-["max-width","أقصى عرض","max-width:1000px;"],
-["min-height","أقل ارتفاع","min-height:100vh;"],
-["margin","المسافة الخارجية","margin:20px;"],
-["padding","المسافة الداخلية","padding:15px;"],
-["border","إطار العنصر","border:1px solid white;"],
-["border-radius","تدوير الحواف","border-radius:20px;"],
-["box-shadow","ظل العنصر","box-shadow:0 5px 20px #0005;"],
-["opacity","الشفافية","opacity:.8;"],
-["display","نوع العرض","display:flex;"],
-["flex","توزيع عناصر Flex","flex:1;"],
-["justify-content","التوزيع الأفقي","justify-content:center;"],
-["align-items","محاذاة العناصر","align-items:center;"],
-["flex-direction","اتجاه العناصر","flex-direction:column;"],
-["flex-wrap","السماح بالالتفاف","flex-wrap:wrap;"],
-["gap","المسافة بين العناصر","gap:15px;"],
-["grid","تخطيط الشبكة","display:grid;"],
-["grid-template-columns","أعمدة الشبكة","grid-template-columns:1fr 1fr;"],
-["position","نوع التموضع","position:relative;"],
-["top","المسافة من الأعلى","top:10px;"],
-["left","المسافة من اليسار","left:10px;"],
-["z-index","ترتيب الطبقات","z-index:10;"],
-["overflow","التحكم بالتجاوز","overflow:hidden;"],
-["font-size","حجم الخط","font-size:20px;"],
-["font-weight","سماكة الخط","font-weight:bold;"],
-["font-family","نوع الخط","font-family:Arial;"],
-["text-align","محاذاة النص","text-align:center;"],
-["text-decoration","زخرفة النص","text-decoration:none;"],
-["line-height","ارتفاع السطر","line-height:1.8;"],
-["letter-spacing","تباعد الأحرف","letter-spacing:2px;"],
-["cursor","شكل المؤشر","cursor:pointer;"],
-["transition","انتقال سلس","transition:.3s ease;"],
-["transform","تحويل العنصر","transform:scale(1.1);"],
-["animation","تشغيل حركة","animation:move 2s infinite;"],
-["@keyframes","تعريف الحركة","@keyframes move {to{transform:translateX(20px)}}"],
-["filter","تأثيرات بصرية","filter:blur(5px);"],
-["backdrop-filter","تأثير على خلفية العنصر","backdrop-filter:blur(15px);"],
-["linear-gradient","تدرج لوني","background:linear-gradient(red,blue);"],
-["radial-gradient","تدرج دائري","background:radial-gradient(blue,black);"],
-["object-fit","ملاءمة الصورة","object-fit:cover;"],
-["aspect-ratio","نسبة الأبعاد","aspect-ratio:16/9;"],
-["visibility","إظهار العنصر","visibility:hidden;"],
-["box-sizing","حساب الأبعاد","box-sizing:border-box;"],
-[":hover","عند مرور المؤشر","button:hover{color:red}"],
-[":active","أثناء الضغط","button:active{transform:scale(.95)}"],
-[":focus","عند التركيز","input:focus{outline:2px solid blue}"],
-["::before","عنصر وهمي قبل المحتوى","h1::before{content:'★'}"],
-["::after","عنصر وهمي بعد المحتوى","h1::after{content:'★'}"],
-["@media","تصميم متجاوب","@media(max-width:600px){body{font-size:14px}}"],
-["calc()","إجراء عمليات حسابية","width:calc(100% - 20px);"],
-["var()","استخدام متغير","color:var(--main);"],
-["--variable","تعريف متغير","--main:#00aaff;"],
-["vh","نسبة من ارتفاع الشاشة","height:100vh;"],
-["vw","نسبة من عرض الشاشة","width:100vw;"],
-["rem","وحدة مرتبطة بحجم الجذر","font-size:2rem;"],
-["em","وحدة مرتبطة بحجم الخط","padding:1em;"],
-["px","وحدة البكسل","width:200px;"],
-["%","نسبة مئوية","width:50%;"],
-["outline","حد التركيز الخارجي","outline:2px solid blue;"],
-["border-color","لون الإطار","border-color:red;"],
-["border-style","نوع الإطار","border-style:solid;"],
-["border-width","سمك الإطار","border-width:2px;"],
-["text-shadow","ظل النص","text-shadow:0 2px 5px black;"],
-["white-space","طريقة التفاف النص","white-space:nowrap;"],
-["word-break","كسر الكلمات","word-break:break-word;"],
-["list-style","تنسيق القائمة","list-style:none;"],
-["pointer-events","التحكم بالأحداث","pointer-events:none;"],
-["user-select","تحديد النص","user-select:none;"],
-["scroll-behavior","سلاسة التمرير","scroll-behavior:smooth;"],
-["clip-path","قص شكل العنصر","clip-path:circle(50%);"],
-["object-position","موضع الصورة","object-position:center;"],
-["mix-blend-mode","مزج الألوان","mix-blend-mode:screen;"]
-]
-},
-
-js:{
-title:"JavaScript - لغة البرمجة والتفاعل",
-desc:"JavaScript تضيف المنطق والتفاعل إلى المواقع، وتتحكم بالأحداث والبيانات والعناصر.",
-items:[
-["let","تعريف متغير قابل للتغيير","let age = 20;"],
-["const","تعريف ثابت","const name = 'Ali';"],
-["var","تعريف متغير بالطريقة القديمة","var score = 10;"],
-["console.log()","عرض قيمة في وحدة التحكم","console.log('Hello');"],
-["alert()","إظهار رسالة تنبيه","alert('مرحبا');"],
-["prompt()","طلب إدخال من المستخدم","prompt('اسمك؟');"],
-["confirm()","طلب تأكيد","confirm('هل أنت متأكد؟');"],
-["function","إنشاء دالة","function hello(){return 'Hi'}"],
-["return","إرجاع نتيجة","return 10;"],
-["if","شرط","if(age>=18){console.log('كبير')}"],
-["else","البديل عند عدم تحقق الشرط","else{console.log('صغير')}"],
-["else if","شرط إضافي","else if(age===15){}"],
-["switch","اختيار بين حالات","switch(x){case 1:break;}"],
-["case","حالة في switch","case 1: console.log('One');"],
-["break","إيقاف الحلقة أو switch","break;"],
-["for","حلقة تكرار","for(let i=0;i<5;i++){}"],
-["while","حلقة طالما الشرط صحيح","while(x<5){x++;}"],
-["do while","تنفيذ ثم فحص الشرط","do{x++;}while(x<5);"],
-["forEach()","تكرار عناصر المصفوفة","[1,2].forEach(x=>console.log(x));"],
-["map()","إنشاء مصفوفة جديدة","[1,2].map(x=>x*2);"],
-["filter()","تصفية عناصر المصفوفة","[1,2,3].filter(x=>x>1);"],
-["find()","البحث عن أول عنصر مناسب","[1,2].find(x=>x>1);"],
-["push()","إضافة عنصر للنهاية","arr.push(5);"],
-["pop()","حذف آخر عنصر","arr.pop();"],
-["shift()","حذف أول عنصر","arr.shift();"],
-["unshift()","إضافة عنصر للبداية","arr.unshift(0);"],
-["length","عدد العناصر أو طول النص","arr.length;"],
-["slice()","استخراج جزء","arr.slice(0,2);"],
-["splice()","إضافة أو حذف عناصر","arr.splice(1,1);"],
-["includes()","التحقق من وجود عنصر","arr.includes(5);"],
-["indexOf()","الحصول على موقع عنصر","arr.indexOf(5);"],
-["join()","تحويل عناصر إلى نص","arr.join(',');"],
-["split()","تقسيم النص","'a,b'.split(',');"],
-["replace()","استبدال جزء من النص","'Hi'.replace('H','B');"],
-["toUpperCase()","تحويل الأحرف إلى كبيرة","'hello'.toUpperCase();"],
-["toLowerCase()","تحويل الأحرف إلى صغيرة","'HELLO'.toLowerCase();"],
-["Number()","تحويل قيمة إلى رقم","Number('25');"],
-["String()","تحويل قيمة إلى نص","String(100);"],
-["parseInt()","تحويل إلى عدد صحيح","parseInt('20');"],
-["parseFloat()","تحويل إلى عدد عشري","parseFloat('2.5');"],
-["Math.random()","رقم عشوائي","Math.random();"],
-["Math.floor()","تقريب لأسفل","Math.floor(4.8);"],
-["Math.ceil()","تقريب لأعلى","Math.ceil(4.2);"],
-["Math.round()","تقريب لأقرب عدد","Math.round(4.5);"],
-["Math.max()","أكبر قيمة","Math.max(2,8);"],
-["Math.min()","أصغر قيمة","Math.min(2,8);"],
-["Date()","التاريخ والوقت","new Date();"],
-["typeof","معرفة نوع البيانات","typeof 10;"],
-["true","قيمة منطقية صحيحة","let x=true;"],
-["false","قيمة منطقية خاطئة","let x=false;"],
-["null","قيمة فارغة مقصودة","let x=null;"],
-["undefined","قيمة غير معرفة","let x;"],
-["NaN","نتيجة رقمية غير صالحة","Number('abc');"],
-["=== ","مقارنة القيمة والنوع","5 === '5';"],
-["!==","عدم التطابق","5 !== 4;"],
-["&&","و المنطقية","true && false;"],
-["||","أو المنطقية","true || false;"],
-["!","نفي منطقي","!true;"],
-["=>","إنشاء دالة سهمية","const sum=(a,b)=>a+b;"],
-["try","بدء معالجة الأخطاء","try{run();}"],
-["catch","التقاط الخطأ","catch(e){console.log(e)}"],
-["finally","تنفيذ أخير دائماً","finally{console.log('Done')}"],
-["throw","إطلاق خطأ","throw new Error('خطأ');"],
-["new","إنشاء كائن جديد","new Date();"],
-["this","الإشارة إلى السياق الحالي","this.name;"],
-["class","إنشاء صنف","class User{}"],
-["constructor","دالة تهيئة الصنف","constructor(name){this.name=name}"],
-["extends","وراثة صنف","class Admin extends User{}"],
-["super","استدعاء الأب","super();"],
-["async","تعريف دالة غير متزامنة","async function getData(){}"],
-["await","انتظار نتيجة","const x=await fetch(url);"],
-["Promise","تمثيل عملية مستقبلية","new Promise((resolve)=>resolve(1));"],
-["setTimeout()","تنفيذ بعد مدة","setTimeout(()=>alert('Hi'),1000);"],
-["setInterval()","تكرار التنفيذ بفاصل زمني","setInterval(()=>console.log('Hi'),1000);"],
-["clearInterval()","إيقاف التكرار","clearInterval(timer);"],
-["document","الوصول إلى مستند HTML","document.title;"],
-["getElementById()","البحث بواسطة المعرّف","document.getElementById('box');"],
-["querySelector()","البحث بواسطة CSS selector","document.querySelector('.box');"],
-["querySelectorAll()","البحث عن جميع المطابقات","document.querySelectorAll('p');"],
-["innerHTML","قراءة أو تغيير HTML","el.innerHTML='<b>Hi</b>';"],
-["textContent","قراءة أو تغيير النص","el.textContent='Hello';"],
-["innerText","التعامل مع النص الظاهر","el.innerText='Hello';"],
-["style","تعديل تنسيق مباشر","el.style.color='red';"],
-["classList.add()","إضافة صنف CSS","el.classList.add('active');"],
-["classList.remove()","حذف صنف CSS","el.classList.remove('active');"],
-["classList.toggle()","تبديل الصنف","el.classList.toggle('active');"],
-["addEventListener()","الاستماع لحدث","btn.addEventListener('click',run);"],
-["click","حدث الضغط","btn.addEventListener('click',run);"],
-["submit","حدث إرسال النموذج","form.addEventListener('submit',run);"],
-["preventDefault()","منع السلوك الافتراضي","event.preventDefault();"],
-["createElement()","إنشاء عنصر","document.createElement('div');"],
-["appendChild()","إضافة عنصر داخل عنصر","box.appendChild(child);"],
-["remove()","حذف العنصر","el.remove();"],
-["fetch()","طلب بيانات من مصدر","fetch('/api');"],
-["JSON.parse()","تحويل نص JSON إلى بيانات","JSON.parse('{}');"],
-["JSON.stringify()","تحويل بيانات إلى JSON","JSON.stringify({a:1});"],
-["localStorage.setItem()","حفظ بيانات محلياً","localStorage.setItem('name','Ali');"],
-["localStorage.getItem()","قراءة بيانات محفوظة","localStorage.getItem('name');"],
-["localStorage.removeItem()","حذف بيانات محفوظة","localStorage.removeItem('name');"]
-]
-}
+ html:[
+  ["html","هيكل صفحة HTML","يحدد بداية مستند HTML ونهايته.","<!DOCTYPE html>"],
+  ["html","عنصر HTML","العنصر الرئيسي الذي يحتوي الصفحة.","<html lang='ar'>...</html>"],
+  ["head","رأس الصفحة","يحتوي معلومات الصفحة والإعدادات.","<head>...</head>"],
+  ["title","عنوان الصفحة","يحدد الاسم الذي يظهر في تبويب المتصفح.","<title>صفحتي</title>"],
+  ["meta","معلومات الصفحة","يحدد ترميز الصفحة وإعدادات العرض.","<meta charset='UTF-8'>"],
+  ["body","جسم الصفحة","يحتوي المحتوى الذي يظهر للمستخدم.","<body>محتوى الصفحة</body>"],
+  ["h1","عنوان رئيسي","يعرض العنوان الأهم في الصفحة.","<h1>عنوان رئيسي</h1>"],
+  ["h2","عنوان فرعي","يعرض عنواناً فرعياً.","<h2>عنوان فرعي</h2>"],
+  ["p","فقرة نصية","يستخدم لكتابة النصوص والفقرات.","<p>هذه فقرة.</p>"],
+  ["a","رابط","ينشئ رابطاً إلى صفحة أو موقع.","<a href='https://example.com'>افتح</a>"],
+  ["img","صورة","يعرض صورة داخل الصفحة.","<img src='photo.jpg' alt='صورة'>"],
+  ["button","زر","ينشئ زراً قابلاً للتفاعل.","<button>اضغط هنا</button>"],
+  ["input","حقل إدخال","يستقبل بيانات من المستخدم.","<input type='text'>"],
+  ["textarea","نص متعدد الأسطر","يسمح بإدخال نص طويل.","<textarea></textarea>"],
+  ["form","نموذج","يجمع مدخلات المستخدم لإرسالها.","<form>...</form>"],
+  ["label","تسمية","يربط وصفاً بحقل إدخال.","<label for='name'>الاسم</label>"],
+  ["select","قائمة اختيار","ينشئ قائمة من الخيارات.","<select><option>الأول</option></select>"],
+  ["option","خيار","يمثل خياراً داخل قائمة select.","<option value='1'>الأول</option>"],
+  ["div","حاوية عامة","يجمع العناصر في كتلة واحدة.","<div>المحتوى</div>"],
+  ["span","حاوية نصية","يحدد جزءاً صغيراً من النص.","<span>نص</span>"],
+  ["header","رأس القسم","يمثل رأس الصفحة أو القسم.","<header>الرأس</header>"],
+  ["nav","التنقل","يجمع روابط التنقل الرئيسية.","<nav><a href='#'>الرئيسية</a></nav>"],
+  ["main","المحتوى الرئيسي","يحدد المحتوى الأساسي للصفحة.","<main>المحتوى</main>"],
+  ["section","قسم","يجمع محتوى مرتبطاً بموضوع واحد.","<section>قسم</section>"],
+  ["article","مقال","يمثل محتوى مستقلاً مثل مقال أو خبر.","<article>مقال</article>"],
+  ["aside","محتوى جانبي","يعرض محتوى مرتبطاً بالمحتوى الرئيسي.","<aside>روابط جانبية</aside>"],
+  ["footer","تذييل","يمثل نهاية الصفحة أو القسم.","<footer>حقوق النشر</footer>"],
+  ["ul","قائمة غير مرتبة","ينشئ قائمة نقطية.","<ul><li>عنصر</li></ul>"],
+  ["ol","قائمة مرتبة","ينشئ قائمة مرقمة.","<ol><li>الأول</li></ol>"],
+  ["li","عنصر قائمة","يمثل عنصراً داخل قائمة.","<li>عنصر</li>"],
+  ["table","جدول","ينشئ جدول بيانات.","<table>...</table>"],
+  ["tr","صف جدول","ينشئ صفاً داخل الجدول.","<tr><td>بيانات</td></tr>"],
+  ["td","خلية بيانات","يمثل خلية عادية في الجدول.","<td>قيمة</td>"],
+  ["th","خلية عنوان","يمثل خلية عنوان في الجدول.","<th>الاسم</th>"],
+  ["video","فيديو","يعرض ملف فيديو.","<video controls src='video.mp4'></video>"],
+  ["audio","صوت","يعرض مشغل ملف صوتي.","<audio controls src='audio.mp3'></audio>"],
+  ["canvas","لوحة رسم","توفر مساحة للرسم باستخدام JavaScript.","<canvas id='board'></canvas>"],
+  ["iframe","إطار مضمّن","يعرض صفحة أخرى داخل الصفحة الحالية.","<iframe src='page.html'></iframe>"],
+  ["strong","تأكيد مهم","يشير إلى نص ذي أهمية قوية.","<strong>مهم</strong>"],
+  ["em","تأكيد نصي","يشير إلى نص مؤكد.","<em>نص مؤكد</em>"],
+  ["br","فاصل سطر","ينقل النص إلى سطر جديد.","سطر أول<br>سطر ثانٍ"],
+  ["hr","فاصل أفقي","ينشئ فاصلاً بين أجزاء المحتوى.","<hr>"],
+  ["details","تفاصيل قابلة للفتح","يعرض محتوى يمكن إظهاره وإخفاؤه.","<details><summary>المزيد</summary>شرح</details>"],
+  ["summary","عنوان التفاصيل","يمثل العنوان القابل للنقر داخل details.","<summary>اضغط للعرض</summary>"],
+  ["progress","شريط تقدم","يعرض نسبة تقدم عملية.","<progress value='60' max='100'></progress>"],
+  ["meter","مقياس","يعرض قيمة ضمن نطاق محدد.","<meter value='0.7'>70%</meter>"],
+  ["time","وقت أو تاريخ","يمثل وقتاً أو تاريخاً قابلاً للقراءة الآلية.","<time datetime='2026-11-06'>اليوم</time>"],
+  ["figure","عنصر توضيحي","يجمع صورة أو رسماً مع وصفه.","<figure><img src='a.jpg'><figcaption>وصف</figcaption></figure>"],
+  ["blockquote","اقتباس","يعرض اقتباساً طويلاً.","<blockquote>نص مقتبس</blockquote>"]
+ ],
+ css:[
+  ["color","لون النص","يحدد لون النص داخل العنصر.","color: #ffffff;"],
+  ["background","الخلفية","يحدد خلفية العنصر.","background: #101827;"],
+  ["background-color","لون الخلفية","يحدد لون خلفية العنصر.","background-color: blue;"],
+  ["background-image","صورة الخلفية","يضيف صورة أو تدرجاً للخلفية.","background-image: linear-gradient(90deg,blue,cyan);"],
+  ["font-size","حجم الخط","يحدد حجم النص.","font-size: 20px;"],
+  ["font-family","نوع الخط","يحدد عائلة الخط المستخدمة.","font-family: Arial, sans-serif;"],
+  ["font-weight","سماكة الخط","يتحكم في سماكة النص.","font-weight: 700;"],
+  ["text-align","محاذاة النص","يحدد اتجاه محاذاة النص.","text-align: center;"],
+  ["text-decoration","زخرفة النص","يضيف خطاً أو يزيله من النص.","text-decoration: underline;"],
+  ["line-height","ارتفاع السطر","يتحكم في المسافة الرأسية بين الأسطر.","line-height: 1.8;"],
+  ["width","العرض","يحدد عرض العنصر.","width: 100%;"],
+  ["height","الارتفاع","يحدد ارتفاع العنصر.","height: 200px;"],
+  ["min-width","أقل عرض","يحدد الحد الأدنى لعرض العنصر.","min-width: 250px;"],
+  ["max-width","أقصى عرض","يحدد الحد الأعلى لعرض العنصر.","max-width: 1200px;"],
+  ["margin","الهامش الخارجي","يحدد المسافة خارج حدود العنصر.","margin: 20px;"],
+  ["padding","الهامش الداخلي","يحدد المسافة داخل العنصر.","padding: 15px;"],
+  ["border","الحدود","يحدد حدود العنصر.","border: 1px solid white;"],
+  ["border-radius","استدارة الحواف","يجعل زوايا العنصر مستديرة.","border-radius: 16px;"],
+  ["box-shadow","ظل الصندوق","يضيف ظلاً حول العنصر.","box-shadow: 0 8px 25px #0005;"],
+  ["opacity","الشفافية","يحدد درجة ظهور العنصر.","opacity: .8;"],
+  ["display","طريقة العرض","يحدد طريقة تخطيط العنصر.","display: flex;"],
+  ["position","التموضع","يحدد نظام تحديد موقع العنصر.","position: relative;"],
+  ["top","الموقع العلوي","يحدد إزاحة العنصر من الأعلى.","top: 10px;"],
+  ["z-index","ترتيب الطبقات","يحدد ترتيب العنصر أمام العناصر الأخرى.","z-index: 10;"],
+  ["overflow","المحتوى الزائد","يحدد طريقة التعامل مع المحتوى المتجاوز.","overflow: auto;"],
+  ["flex-direction","اتجاه Flex","يحدد اتجاه العناصر داخل Flexbox.","flex-direction: column;"],
+  ["justify-content","توزيع العناصر","يوزع العناصر على المحور الرئيسي.","justify-content: center;"],
+  ["align-items","محاذاة العناصر","يحاذي العناصر على المحور العرضي.","align-items: center;"],
+  ["flex-wrap","التفاف العناصر","يسمح بانتقال العناصر إلى سطر آخر.","flex-wrap: wrap;"],
+  ["gap","المسافة بين العناصر","يحدد المسافة بين عناصر التخطيط.","gap: 15px;"],
+  ["grid-template-columns","أعمدة Grid","يحدد أعمدة شبكة CSS.","grid-template-columns: repeat(3,1fr);"],
+  ["transform","التحويل","يدير أو يكبر أو يحرك العنصر.","transform: scale(1.05);"],
+  ["transition","الانتقال","ينشئ انتقالاً سلساً بين الحالات.","transition: all .3s ease;"],
+  ["animation","الرسوم المتحركة","يربط العنصر بحركة معرفة مسبقاً.","animation: move 2s infinite;"],
+  ["cursor","شكل المؤشر","يغير شكل مؤشر الفأرة.","cursor: pointer;"],
+  ["filter","المؤثرات","يطبق مؤثرات بصرية على العنصر.","filter: blur(4px);"],
+  ["backdrop-filter","مؤثر الخلفية","يطبق مؤثراً على ما خلف العنصر.","backdrop-filter: blur(15px);"],
+  ["object-fit","ملاءمة الصورة","يحدد كيفية ملاءمة الصورة داخل إطارها.","object-fit: cover;"],
+  ["aspect-ratio","نسبة الأبعاد","يحدد نسبة العرض إلى الارتفاع.","aspect-ratio: 16 / 9;"],
+  ["visibility","الظهور","يتحكم في ظهور العنصر دون حذفه من التخطيط.","visibility: hidden;"],
+  ["pointer-events","تفاعل المؤشر","يتحكم في استقبال العنصر لأحداث المؤشر.","pointer-events: none;"],
+  ["white-space","المسافات والأسطر","يتحكم في معالجة المسافات والأسطر.","white-space: nowrap;"],
+  ["word-break","كسر الكلمات","يتحكم في كسر الكلمات الطويلة.","word-break: break-word;"],
+  ["text-shadow","ظل النص","يضيف ظلاً إلى النص.","text-shadow: 0 2px 8px #000;"],
+  ["outline","الإطار الخارجي","يرسم إطاراً خارج حدود العنصر.","outline: 2px solid cyan;"],
+  ["box-sizing","حساب الأبعاد","يحدد طريقة حساب العرض والارتفاع.","box-sizing: border-box;"],
+  ["scroll-behavior","سلوك التمرير","يتحكم في سلاسة التمرير.","scroll-behavior: smooth;"],
+  ["isolation","عزل الطبقات","ينشئ سياق تكديس مستقلاً.","isolation: isolate;"],
+  ["object-position","موضع الصورة","يحدد موضع الصورة داخل إطارها.","object-position: center;"]
+ ],
+ js:[
+  ["let","متغير قابل للتغيير","ينشئ متغيراً يمكن تغيير قيمته.","let age = 20;"],
+  ["const","ثابت","ينشئ متغيراً لا يمكن إعادة إسناد قيمته.","const name = 'Ali';"],
+  ["var","متغير قديم","طريقة قديمة لتعريف المتغيرات.","var score = 10;"],
+  ["function","دالة","ينشئ مجموعة أوامر يمكن استدعاؤها.","function greet(){ return 'Hello'; }"],
+  ["return","إرجاع قيمة","يعيد نتيجة من الدالة.","return 10;"],
+  ["if","شرط","ينفذ أوامر عند تحقق شرط.","if(age >= 18){ console.log('Adult'); }"],
+  ["else","وإلا","ينفذ مساراً بديلاً عند عدم تحقق الشرط.","else { console.log('Young'); }"],
+  ["for","حلقة تكرار","يكرر الأوامر عدداً محدداً من المرات.","for(let i=0;i<5;i++){ console.log(i); }"],
+  ["while","حلقة شرطية","يكرر الأوامر طالما الشرط صحيح.","while(x < 5){ x++; }"],
+  ["switch","اختيار متعدد","يختار حالة من عدة حالات.","switch(day){ case 1: break; }"],
+  ["break","إيقاف الحلقة","ينهي الحلقة أو switch.","break;"],
+  ["continue","تجاوز دورة","ينتقل إلى الدورة التالية في الحلقة.","continue;"],
+  ["console.log","طباعة في وحدة التحكم","يعرض قيمة أو رسالة لأغراض الفحص.","console.log('Hello');"],
+  ["alert","رسالة تنبيه","يعرض نافذة تنبيه.","alert('Welcome');"],
+  ["prompt","طلب إدخال","يطلب قيمة من المستخدم.","let name = prompt('Your name?');"],
+  ["confirm","تأكيد","يعرض سؤال تأكيد للمستخدم.","let ok = confirm('Continue?');"],
+  ["document.querySelector","اختيار عنصر","يختار أول عنصر يطابق محدد CSS.","document.querySelector('.box');"],
+  ["document.querySelectorAll","اختيار عدة عناصر","يعيد جميع العناصر المطابقة.","document.querySelectorAll('p');"],
+  ["getElementById","اختيار بالمعرف","يبحث عن عنصر باستخدام id.","document.getElementById('title');"],
+  ["addEventListener","مستمع أحداث","يربط حدثاً بعنصر.","button.addEventListener('click', run);"],
+  ["textContent","محتوى النص","يقرأ أو يغير النص داخل العنصر.","element.textContent = 'Hello';"],
+  ["innerHTML","محتوى HTML","يقرأ أو يغير HTML داخل العنصر.","element.innerHTML = '<b>Hello</b>';"],
+  ["classList.add","إضافة صنف","يضيف class إلى العنصر.","element.classList.add('active');"],
+  ["classList.remove","حذف صنف","يحذف class من العنصر.","element.classList.remove('active');"],
+  ["classList.toggle","تبديل صنف","يضيف الصنف إن لم يكن موجوداً ويحذفه إن كان موجوداً.","element.classList.toggle('active');"],
+  ["setTimeout","تأخير التنفيذ","ينفذ دالة مرة واحدة بعد مدة.","setTimeout(()=>{ console.log('Hi'); },1000);"],
+  ["setInterval","تكرار زمني","ينفذ دالة بشكل متكرر بفاصل زمني.","setInterval(()=>{ console.log('Hi'); },1000);"],
+  ["clearInterval","إيقاف التكرار","يوقف مؤقت setInterval.","clearInterval(timer);"],
+  ["Math.random","رقم عشوائي","ينشئ رقماً عشوائياً بين صفر وواحد.","Math.random();"],
+  ["Math.round","تقريب","يقرب الرقم إلى أقرب عدد صحيح.","Math.round(4.6);"],
+  ["Math.floor","تقريب للأسفل","يقرب الرقم إلى العدد الصحيح الأصغر.","Math.floor(4.9);"],
+  ["Math.max","أكبر قيمة","يعيد أكبر قيمة من القيم المدخلة.","Math.max(2,8,4);"],
+  ["Math.min","أصغر قيمة","يعيد أصغر قيمة من القيم المدخلة.","Math.min(2,8,4);"],
+  ["Array.push","إضافة عنصر","يضيف عنصراً إلى نهاية المصفوفة.","items.push('New');"],
+  ["Array.pop","حذف آخر عنصر","يحذف آخر عنصر من المصفوفة.","items.pop();"],
+  ["Array.map","تحويل المصفوفة","ينشئ مصفوفة جديدة من نتائج تطبيق دالة.","numbers.map(n => n * 2);"],
+  ["Array.filter","تصفية المصفوفة","ينشئ مصفوفة بالعناصر التي تحقق شرطاً.","numbers.filter(n => n > 5);"],
+  ["Array.find","البحث عن عنصر","يعيد أول عنصر يحقق الشرط.","users.find(u => u.id === 1);"],
+  ["JSON.stringify","تحويل إلى JSON","يحول قيمة JavaScript إلى نص JSON.","JSON.stringify({name:'Ali'});"],
+  ["JSON.parse","قراءة JSON","يحول نص JSON إلى قيمة JavaScript.","JSON.parse('{\"age\":20}');"],
+  ["localStorage.setItem","حفظ محلي","يحفظ قيمة نصية في تخزين المتصفح.","localStorage.setItem('theme','dark');"],
+  ["localStorage.getItem","قراءة التخزين","يقرأ قيمة محفوظة محلياً.","localStorage.getItem('theme');"],
+  ["fetch","طلب بيانات","يرسل طلباً إلى مورد عبر الشبكة.","fetch('/api/data');"],
+  ["async","دالة غير متزامنة","تعرف دالة تتعامل مع العمليات غير المتزامنة.","async function load(){ }"],
+  ["await","انتظار نتيجة","ينتظر نتيجة Promise داخل دالة async.","const response = await fetch(url);"],
+  ["try","محاولة","يحدد كتلة أوامر لمراقبة الأخطاء.","try { run(); }"],
+  ["catch","التقاط الخطأ","يتعامل مع خطأ حدث داخل try.","catch(error){ console.error(error); }"],
+  ["new Date","التاريخ والوقت","ينشئ كائناً للتاريخ والوقت.","const today = new Date();"],
+  ["typeof","نوع البيانات","يعيد نوع القيمة.","typeof 'Hello';"]
+ ]
 };
 
-let current = "html";
-let selected = null;
+/* ==================================================
+   بناء بطاقات تعليمية إضافية
+   هذه البطاقات أمثلة وأنماط تطبيقية وليست أوامر أصلية.
+================================================== */
 
-function changeLang(lang,button){
- current=lang;
- selected=null;
+const lessons = {
+ html:[
+  ["إنشاء عنوان","<h1>عنوان الصفحة</h1>","يستخدم لإنشاء عنوان رئيسي واضح."],
+  ["إنشاء رابط خارجي","<a href='https://example.com'>زيارة</a>","ينقل المستخدم إلى موقع آخر."],
+  ["إضافة صورة مرنة","<img src='image.jpg' alt='وصف' loading='lazy'>","يعرض صورة مع وصف وتحميل مؤجل."],
+  ["نموذج تسجيل","<form><input type='email' required><button>إرسال</button></form>","يجمع بيانات المستخدم ويتحقق من الحقول المطلوبة."],
+  ["قائمة تنقل","<nav><a href='#home'>الرئيسية</a></nav>","تستخدم للتنقل بين أقسام الموقع."],
+  ["قسم محتوى","<section id='about'><h2>من نحن</h2></section>","يجمع محتوى متعلقاً بموضوع محدد."],
+  ["زر تفاعلي","<button type='button'>اضغط</button>","ينشئ زرّاً يمكن ربطه بالأحداث."],
+  ["جدول بيانات","<table><tr><th>الاسم</th></tr><tr><td>أحمد</td></tr></table>","يعرض المعلومات في صفوف وأعمدة."],
+  ["رابط بريد","<a href='mailto:test@example.com'>راسلنا</a>","يفتح تطبيق البريد لإرسال رسالة."],
+  ["حقل كلمة مرور","<input type='password' autocomplete='current-password'>","ينشئ حقل إدخال مخصصاً لكلمة المرور."]
+ ],
+ css:[
+  ["بطاقة زجاجية","background:rgba(255,255,255,.08);backdrop-filter:blur(15px);border:1px solid #ffffff22;","تصنع تأثير الزجاج الشفاف."],
+  ["زر متدرج","background:linear-gradient(120deg,#6366f1,#06b6d4);","ينشئ خلفية لونية متدرجة."],
+  ["توسيط كامل","display:flex;align-items:center;justify-content:center;","يوسّط المحتوى أفقياً وعمودياً."],
+  ["شبكة متجاوبة","display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));","ينشئ أعمدة تتكيف مع عرض الشاشة."],
+  ["تأثير تحويم","transition:transform .3s ease;","يجعل تغيرات العنصر أكثر سلاسة."],
+  ["تكبير عند المرور", "transform:scale(1.05);","يكبر العنصر قليلاً عند تطبيق الحالة."],
+  ["ظل احترافي","box-shadow:0 12px 35px rgba(0,0,0,.25);","يضيف عمقاً بصرياً للعنصر."],
+  ["خلفية متحركة","background-size:200% 200%;animation:gradient 5s ease infinite;","يساعد على إنشاء خلفية متدرجة متحركة."],
+  ["تصميم للهاتف","@media(max-width:600px){.box{width:100%;}}","يغير التصميم حسب حجم الشاشة."],
+  ["نص متدرج","background:linear-gradient(90deg,#60a5fa,#c084fc);background-clip:text;color:transparent;","يعرض النص بألوان متدرجة."]
+ ],
+ js:[
+  ["زر يغير النص","button.addEventListener('click',()=>{title.textContent='تم التغيير';});","يغير نص عنصر عند الضغط على الزر."],
+  ["تبديل الوضع الليلي","document.body.classList.toggle('dark');","يبدل صنف الوضع الليلي على الصفحة."],
+  ["عداد","let count=0;count++;console.log(count);","يزيد قيمة العداد بمقدار واحد."],
+  ["التحقق من حقل","if(input.value.trim()===''){alert('أدخل البيانات');}","يتحقق من أن الحقل ليس فارغاً."],
+  ["فلترة عناصر","const result=items.filter(item=>item.active);","يستخرج العناصر التي تحقق الشرط."],
+  ["تحديث الوقت","setInterval(()=>{clock.textContent=new Date().toLocaleTimeString();},1000);","يحدث الساعة كل ثانية."],
+  ["نسخ النص","navigator.clipboard.writeText('النص المراد نسخه');","ينسخ النص إلى الحافظة في البيئات المدعومة."],
+  ["إظهار عنصر","element.hidden=false;","يظهر عنصراً مخفياً."],
+  ["إخفاء عنصر","element.hidden=true;","يخفي عنصراً من الصفحة."],
+  ["طلب بيانات","const response=await fetch('/data.json');const data=await response.json();","يجلب بيانات من مصدر يدعم الطلبات."]
+ ]
+};
 
- document.querySelectorAll('.lang-btn').forEach(b=>b.classList.remove('active'));
- button.classList.add('active');
+const state={lang:"html",query:"",current:null};
+const cards=document.getElementById("cards");
+const search=document.getElementById("search");
 
- document.getElementById('langTitle').textContent=database[lang].title;
- document.getElementById('langDesc').textContent=database[lang].desc;
- document.getElementById('search').value='';
- document.getElementById('detail').style.display='none';
+function makeDatabase(lang){
+ const base=database[lang].map((x,i)=>({
+  title:x[0],category:"مرجع أساسي",description:x[2],
+  code:x[3],id:i
+ }));
+ const extra=lessons[lang].map((x,i)=>({
+  title:x[0],category:"مثال تطبيقي",
+  description:x[2],code:x[1],id:100+i
+ }));
 
- render();
-}
+ const result=[...base,...extra];
 
-function render(){
- const query=document.getElementById('search').value.toLowerCase();
- const items=database[current].items.filter(item=>
- item.join(' ').toLowerCase().includes(query)
- );
-
- const container=document.getElementById('symbols');
- container.innerHTML='';
-
- items.forEach(item=>{
- const div=document.createElement('div');
- div.className='symbol';
- div.innerHTML='<code></code><small></small>';
- div.querySelector('code').textContent=item[0];
- div.querySelector('small').textContent=item[1];
-
- div.onclick=()=>{
- document.querySelectorAll('.symbol').forEach(x=>x.classList.remove('selected'));
- div.classList.add('selected');
- showDetail(item);
+ // بطاقات تعليمية إضافية حتى 1000 بطاقة في كل قسم.
+ const topics={
+  html:["العناصر","الخصائص","النماذج","الروابط","الوسائط","الجداول","القوائم","المحتوى الدلالي"],
+  css:["الألوان","التخطيط","الخطوط","الحركة","الاستجابة","المسافات","الحدود","المؤثرات"],
+  js:["المتغيرات","الدوال","المصفوفات","الأحداث","التعامل مع الصفحة","الوقت","البيانات","الأخطاء"]
  };
 
- container.appendChild(div);
+ const examples={
+  html:[
+   ["مثال عنصر","<div class='box'>المحتوى</div>","مثال على تجميع المحتوى داخل عنصر."],
+   ["مثال خاصية","<input type='text' placeholder='اكتب هنا'>","مثال على استخدام خصائص عنصر الإدخال."],
+   ["مثال صفحة","<main><h1>مرحباً</h1><p>أهلاً بك</p></main>","مثال على تنظيم المحتوى داخل الصفحة."]
+  ],
+  css:[
+   ["مثال تنسيق",".box{padding:20px;border-radius:15px;}","تنسيق حاوية بمسافات وحواف مستديرة."],
+   ["مثال تخطيط",".layout{display:grid;gap:15px;}","إنشاء تخطيط شبكي بمسافات."],
+   ["مثال حركة",".box:hover{transform:translateY(-4px);}","تحريك العنصر عند مرور المؤشر."]
+  ],
+  js:[
+   ["مثال متغير","const message='مرحباً';console.log(message);","تعريف نص وعرضه في وحدة التحكم."],
+   ["مثال دالة","function add(a,b){return a+b;}","إنشاء دالة تجمع قيمتين."],
+   ["مثال حدث","element.addEventListener('click',()=>console.log('Clicked'));","تنفيذ أمر عند النقر."]
+  ]
+ };
+
+ let index=0;
+ while(result.length<1000){
+  const topic=topics[lang][index%topics[lang].length];
+  const sample=examples[lang][index%examples[lang].length];
+  const number=String(index+1).padStart(3,"0");
+  result.push({
+   title:sample[0]+" "+number,
+   category:"درس تطبيقي · "+topic,
+   description:sample[2]+" هذا المثال يساعدك على فهم "+topic+
+    " وكيفية استخدامها داخل مشروع عملي.",
+   code:sample[1],
+   id:1000+index
+  });
+  index++;
+ }
+ return result;
+}
+
+const catalogs={
+ html:makeDatabase("html"),
+ css:makeDatabase("css"),
+ js:makeDatabase("js")
+};
+
+function render(){
+ const list=catalogs[state.lang];
+ const q=state.query.trim().toLowerCase();
+ const filtered=list.filter(item=>
+  (item.title+" "+item.category+" "+item.description+" "+item.code)
+  .toLowerCase().includes(q)
+ );
+ document.getElementById("counter").textContent=
+  filtered.length+" من "+list.length+" بطاقة";
+
+ document.getElementById("empty").hidden=filtered.length!==0;
+ cards.innerHTML="";
+
+ filtered.slice(0,120).forEach((item,index)=>{
+  const card=document.createElement("article");
+  card.className="item";
+  card.style.animationDelay=Math.min(index,20)*.015+"s";
+
+  const top=document.createElement("div");
+  top.className="item-top";
+
+  const category=document.createElement("span");
+  category.className="tag";
+  category.textContent=item.category;
+
+  const number=document.createElement("small");
+  number.style.color="#91a0c3";
+  number.textContent="#"+(item.id+1);
+
+  top.append(category,number);
+
+  const title=document.createElement("h3");
+  title.textContent=item.title;
+
+  const description=document.createElement("p");
+  description.textContent=item.description;
+
+  const code=document.createElement("div");
+  code.className="code";
+  code.textContent=item.code;
+
+  card.append(top,title,description,code);
+  card.addEventListener("click",()=>openDetail(item));
+  cards.appendChild(card);
  });
-
- document.getElementById('count').textContent=
- 'عدد العناصر المعروضة: '+items.length+' من '+database[current].items.length;
-
- document.getElementById('progressBar').style.width=
- (items.length/Math.max(database[current].items.length,1)*100)+'%';
 }
 
-function showDetail(item){
- selected=item;
- document.getElementById('detail').style.display='block';
- document.getElementById('detailTitle').textContent=item[0];
- document.getElementById('detailDesc').textContent=item[1];
- document.getElementById('detailExample').textContent=item[2];
- document.getElementById('detail').scrollIntoView({behavior:'smooth',block:'nearest'});
+function openDetail(item){
+ state.current=item;
+ document.getElementById("detail-category").textContent=item.category;
+ document.getElementById("detail-title").textContent=item.title;
+ document.getElementById("detail-description").textContent=item.description;
+ document.getElementById("detail-example").textContent=item.code;
+ document.getElementById("modal").classList.add("show");
 }
 
-function copyExample(){
- if(!selected)return;
- navigator.clipboard.writeText(selected[2])
- .then(()=>alert('تم نسخ المثال بنجاح'));
+function closeDetail(){
+ document.getElementById("modal").classList.remove("show");
 }
 
-function runCode(){
- const code=document.getElementById('editor').value;
- const frame=document.getElementById('preview');
- frame.srcdoc=code;
-}
+document.querySelectorAll(".tab").forEach(button=>{
+ button.addEventListener("click",()=>{
+  document.querySelectorAll(".tab").forEach(b=>b.classList.remove("active"));
+  button.classList.add("active");
+  state.lang=button.dataset.lang;
+  search.value="";
+  state.query="";
+  render();
+ });
+});
 
-function clearCode(){
- document.getElementById('editor').value='';
- document.getElementById('preview').srcdoc='';
-}
+search.addEventListener("input",()=>{
+ state.query=search.value;
+ render();
+});
+
+document.getElementById("close").addEventListener("click",closeDetail);
+document.getElementById("modal").addEventListener("click",e=>{
+ if(e.target.id==="modal")closeDetail();
+});
+
+document.getElementById("copy").addEventListener("click",async()=>{
+ if(!state.current)return;
+ const button=document.getElementById("copy");
+ try{
+  await navigator.clipboard.writeText(state.current.code);
+  button.textContent="تم النسخ ✓";
+ }catch(error){
+  button.textContent="تعذر النسخ تلقائياً";
+ }
+ setTimeout(()=>button.textContent="نسخ الكود",1800);
+});
+
+document.addEventListener("keydown",e=>{
+ if(e.key==="Escape")closeDetail();
+});
+
+/* شاشة التحميل */
+let progress=0;
+const timer=setInterval(()=>{
+ progress+=Math.floor(Math.random()*4)+1;
+ if(progress>=100)progress=100;
+ document.getElementById("percent").textContent=progress+"%";
+ document.getElementById("progress").style.width=progress+"%";
+
+ if(progress===100){
+  clearInterval(timer);
+  setTimeout(()=>{
+   document.getElementById("intro").classList.add("hide");
+   document.getElementById("app").classList.add("ready");
+  },500);
+ }
+},45);
 
 render();
 </script>
-
 </body>
 </html>
